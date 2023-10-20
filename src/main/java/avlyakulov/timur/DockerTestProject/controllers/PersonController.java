@@ -29,7 +29,7 @@ public class PersonController {
     @GetMapping("/{id}")
     public String getViewPerson(@PathVariable int id, Model model) {
         model.addAttribute("person", toPersonDTO(personService.getPersonById(id)));
-        return "/people/person";
+        return "people/person";
     }
 
     @GetMapping("/new")

@@ -4,3 +4,15 @@ services:
   postgres:
     image: 'postgres:15'
     container_name: 'java-postgres'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=1504'
+      - 'POSTGRES_DB=docker_db'
+
+
+  app:
+    #он здесь ищет наш докер файл. При запуске docker-compose мы будем искать локально наш контейнер, а не искать уже существующий образ
+    build: ./
+    container_name: 'java-app'
+    ports:
+      - 8080:8080

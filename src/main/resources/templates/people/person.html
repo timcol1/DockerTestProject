@@ -21,19 +21,20 @@
 </head>
 <body>
 
-<header th:insert="template/header_user :: header"></header>
+<header th:insert="~{template/header_user :: header}"></header>
+
 
 <main>
     <p th:text="'Логін : ' + ${person.getUsername()}"></p>
-    <p  th:text="'Email : ' + ${person.getEmail()}"></p>
-    <p  th:text="'Пароль : ' + ${person.getPassword()}"></p>
+    <p th:text="'Email : ' + ${person.getEmail()}"></p>
+    <p th:text="'Пароль : ' + ${person.getPassword()}"></p>
     <a th:href="@{/people/{id}/edit(id = ${person.getId()})}">Змінити дані людини</a>
     <form th:method="DELETE" th:action="@{/people/{id}(id = ${person.getId()})}">
         <input class="btn btn-primary" type="submit" value="Видалити цю людину"/>
     </form>
 </main>
 
-<div th:insert="template/footer :: footer"></div>
+<div th:insert="~{template/footer :: footer}"></div>
 
 </body>
 </html>
