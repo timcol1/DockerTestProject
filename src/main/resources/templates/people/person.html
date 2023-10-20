@@ -21,26 +21,16 @@
 </head>
 <body>
 
-<header th:insert="template/header_librarian :: header"></header>
+<header th:insert="template/header_user :: header"></header>
 
 <main>
-    <p th:text="'Повне ім\'я : ' + ${person.getName()}"></p>
-    <p  th:text="'Дата народження : ' + ${person.getYear()}"></p>
-    <p  th:text="'Мобільний номер : ' + ${person.getPhoneNumber()}"></p>
-    <p th:text="'Логін в бібліотеці : ' + ${person.getUsername()}"></p>
+    <p th:text="'Логін : ' + ${person.getUsername()}"></p>
+    <p  th:text="'Email : ' + ${person.getEmail()}"></p>
+    <p  th:text="'Пароль : ' + ${person.getPassword()}"></p>
     <a th:href="@{/people/{id}/edit(id = ${person.getId()})}">Змінити дані людини</a>
     <form th:method="DELETE" th:action="@{/people/{id}(id = ${person.getId()})}">
         <input class="btn btn-primary" type="submit" value="Видалити цю людину"/>
     </form>
-    <p th:text="'Ця людина ще не взяла жодної книги'" th:if="${#lists.isEmpty(books)}">books</p>
-    <div th:if="${!#lists.isEmpty(books)}">
-        <h2>Книги які взяв це користувач</h2>
-        <div th:each="book : ${books}">
-            <a th:href="@{/librarian/{id}(id = ${book.getId()})}" th:text="${book.getName()}"></a>
-            <span th:text="', ' + ${book.getAuthorName()}"></span>
-            <span th:if="${book.isOverdue()}" th:style="${book.isOverdue() ? 'color : red;' : ''}"> - ця книга вже просрочена</span>
-        </div>
-    </div>
 </main>
 
 <div th:insert="template/footer :: footer"></div>

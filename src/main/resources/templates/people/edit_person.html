@@ -20,22 +20,20 @@
 </head>
 <body>
 
-<header th:insert="template/header_librarian :: header"></header>
+<header th:insert="template/header_user :: header"></header>
 
 <main>
     <div class="d-flex justify-content-center" style="margin-top: 50px">
         <form th:method="PATCH" th:action="@{/people/{id}(id = ${person.getId()})}" th:object="${person}">
             <label for="name">Ведіть прізвище та ім'я людини</label>
-            <input id="name" th:field="*{name}" type="text"/>
-            <div style="color: red" th:errors="*{name}">Name Error</div>
+            <input id="name" th:field="*{username}" type="text"/>
             <br>
-            <label for="date">Ведіть рік народження людини</label>
-            <input id="date" th:field="*{year}" type="text"/>
-            <div style="color: red" th:errors="*{year}">Name Error</div>
+            <label for="date">Ведіть email</label>
+            <input id="date" th:field="*{email}" type="text"/>
             <br>
-            <label for="phoneNumber">Введіть номер телефону людини починаючи з +380</label>
-            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
-            <div style="color: red" th:errors="*{phoneNumber}">Name Error</div>
+            <label for="phoneNumber">Введіть пароль людини</label>
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{password}">
+            <div style="color: red" th:errors="*{password}">Name Error</div>
             <br>
             <input type="submit" value="Змінити людину">
         </form>
