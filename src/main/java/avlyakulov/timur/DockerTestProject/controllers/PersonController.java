@@ -4,9 +4,13 @@ import avlyakulov.timur.DockerTestProject.dto.PersonDTO;
 import avlyakulov.timur.DockerTestProject.models.Person;
 import avlyakulov.timur.DockerTestProject.services.PersonService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/people")
@@ -25,6 +29,16 @@ public class PersonController {
         model.addAttribute("people", personService.findAll().stream().map(this::toPersonDTO).toList());
         return "people/people_list";
     }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public ResponseEntity<?> testAPI() {
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Map.of("status", "OK"));
+    }
+
 
     @GetMapping("/{id}")
     public String getViewPerson(@PathVariable int id, Model model) {
@@ -62,6 +76,7 @@ public class PersonController {
         personService.deletePerson(id);
         return "redirect:/people";
     }
+
 
     public PersonDTO toPersonDTO(Person person) {
         return modelMapper.map(person, PersonDTO.class);
